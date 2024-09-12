@@ -10,21 +10,23 @@ const artworkInfo = document.getElementById("artwork_info");
 
 fetch (`https://api.artic.edu/api/v1/artworks?page=2&limit=10`)
 .then((response) => {
-    if(response.ok) {
-        return response.text();
+    if(!response.ok){
+        throw new Error ('Request failed');
     } else {
-        throw new Error ('failed');
-    }
+        return response.text();
+        //console.log(response);
+    } 
 })
-.then((data) =>{
+.then((data) => {
     const artworks = JSON.parse(data);
-    console.log(artworks)
+    console.log(artworks);
 
+  const artList = oneArtworkContainer.querySelector('ul');
 
 for (let artwork in artworks){
     let art = document.createElement("li");
     art.innerText = artwork.name;
-    artworkInfo.appendChild(art);
+    artList.appendChild(art);
 }
 })
 .catch((error) =>{
