@@ -5,3 +5,21 @@ body{
     align-items: center;
     background-color: bisque;
 }
+
+nav a {
+    color:blueviolet;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+artwork_section{
+    display: none;
+    background-color: rgb(244, 215, 178);
+    border: 1px solid rgb(151, 106, 47);
+    padding: 20px;
+    margin: 20px;
+}
+
+artwork_section.active{
+    display: block;
+}
