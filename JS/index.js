@@ -1,35 +1,60 @@
 //fetch 
 
-//const apiSourceURL = 'https://api.artic.edu/api/v1/artworks?page=2&limit=10';
 const artworksContainer = document.getElementById("artworks_container");
 const oneArtworkContainer = document.getElementById("one_artwork_container");
-const artworkTitle = document.getElementById("artwork_title");
 const artworkInfo = document.getElementById("artwork_info");
 
-//oneArtworkContainer.hidden = true;
 
-fetch (`https://api.artic.edu/api/v1/artworks?page=2&limit=10`)
+const apiUrl = 'https://api.artic.edu/api/v1/artworks?page=2&limit=20';
+fetch (apiUrl)
 .then((response) => {
     if(response.ok) {
-        return response.text();
+        return response.json();
     } else {
         throw new Error ('failed');
     }
 })
 .then((data) =>{
-    const artworks = JSON.parse(data);
+    const artworks = data.data;
     console.log(artworks)
 
-
-for (let artwork in artworks){
+artworks.forEach(artwork => {
     let art = document.createElement("li");
-    art.innerText = artwork.name;
-    artworkInfo.appendChild(art);
-}
+    art.innerText = artwork.title;
+    art.style.cursor = 'pointer';    artworkInfo.appendChild(art);
+
+    art.addEventListener('click', () =>{
+        displayArtworkData(artwork, 'one_artwork_container') 
+    })
+})
 })
 .catch((error) =>{
     console.error('error', error);
 });
+//Display data
+
+function displayArtworkData(artworkData, elementId){
+    const artworkElement = document.getElementById(elementId);
+    if(artworkData){
+        artworkElement.innerHTML = `<img src = "https://www.artic.edu/iiif/2/${artworkData.image_id}/full/200,/0/default.jpg" alt = "${artworkData.title}"/>
+        <p><strong>Title:</strong>${artworkData.title}</p>
+        <p><strong>Artist:</strong>${artworkData.artist_title}</p>
+        <p><strong>Description:</strong>${artworkData.description||'No description to show'}</p>
+        <p><strong>Place of Origin:</strong>${artworkData.place_of_origin||'Unknown'}</p>
+        `;
+    }else{
+        artworkElement.innerHTML = '<p>Sorry, nothing to show you</p>'
+    }
+    artworksContainer.style.display = 'none';
+    oneArtworkContainer.style.display = 'block';
+    }
+
+    //Button
+    document.querySelector('.back_button').onClick = () => {
+        artworksContainer.style.display = 'block';
+        oneArtworkContainer.style.display = 'none';
+    }
+
 
 //----FOOTER----//
 const footer = document.querySelector('footer');
@@ -43,5 +68,5 @@ let thisYear = today.getFullYear();
 
 const copyright = document.createElement('p');
 copyright.className = 'rights';
-copyright.innerHTML = "This content is © " + thisYear + " T.Pripisnova personal project. All rights reserved";
+copyright.innerHTML = "This content is © " + thisYear + " Tatiana's personal project. All rights reserved";
 footer.appendChild(copyright);
