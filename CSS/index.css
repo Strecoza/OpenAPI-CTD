@@ -3,23 +3,90 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin:0;
+    padding: 0;
+    background-image: url("/Art_inst_Chicago.jpg") ; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
     background-color: bisque;
+    
+}
+.title{
+    text-align: center;
+    color:  white;
+    letter-spacing: 1.5px;
+    margin: 20px auto 30px auto;
 }
 
-nav a {
-    color:blueviolet;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-artwork_section{
-    display: none;
+.artwork_section{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(244, 215, 178);
+    opacity: 0.9;
     border: 1px solid rgb(151, 106, 47);
-    padding: 20px;
     margin: 20px;
+    padding: 30px;
 }
 
-artwork_section.active{
-    display: block;
+#artworks_container h2{
+    text-align: center;
+    color: rgb(77, 55, 25);
+    margin-bottom: 30px;
 }
+
+#artworks_container ul{
+    list-style-type: square;
+}
+
+li:hover {
+    color: rgb(42, 28, 7);
+    text-decoration: underline;
+}
+
+#one_artwork_container {
+    opacity: 1;
+}
+
+#back_button{
+    padding: 10px 20px;
+    font-size: large;
+    color: rgb(244, 215, 178);
+    background-color: rgb(77, 55, 25);
+    border-color:rgb(77, 55, 25);
+    opacity: 1;
+}
+
+#back_button:hover{
+    background-color: rgb(151, 106, 47);
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(244, 215, 178);
+    
+    width: 100vw;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    max-height: 70px;
+    position:fixed;
+    left: 0;
+    bottom: 0;
+}
+
+footer p{
+    margin: 5px auto;
+}
+
+.rights{
+    color: rgb(55, 40, 18);
+    margin-bottom: 10px;
+}
+
