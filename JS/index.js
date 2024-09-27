@@ -71,5 +71,5 @@ let thisYear = today.getFullYear();
 
 const copyright = document.createElement('p');
 copyright.className = 'rights';
-copyright.innerHTML = "This content is © " + thisYear + " Tatiana's personal project. All rights reserved";
+copyright.innerHTML = "This content is © " + thisYear + " Tatiana's personal project.";
 footer.appendChild(copyright);
